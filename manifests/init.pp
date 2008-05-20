@@ -115,7 +115,7 @@ class mysql::server::clientpackage inherits mysql::server::base {
 
 class mysql::server::centos inherits mysql::server::clientpackage {
     Service[mysql]{
-        alias => 'mysqld'
+        name  => 'mysqld',
     }
     File['/etc/mysql/my.cnf']{
         path => '/etc/my.cnf',
