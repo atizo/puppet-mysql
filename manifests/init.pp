@@ -33,8 +33,8 @@ class mysql::server::base {
             source => [
                 "puppet://$server/files/mysql/${fqdn}/my.cnf",
                 "puppet://$server/files/mysql/my.cnf",
-                "puppet://$server/mysql/${operatingsystem}/my.cnf",
-                "puppet://$server/mysql/my.cnf"
+                "puppet://$server/mysql/config/${operatingsystem}/my.cnf",
+                "puppet://$server/mysql/config/my.cnf"
             ],
             ensure => file,
             require => Package[mysql-server],
