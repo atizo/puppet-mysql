@@ -7,6 +7,7 @@ class mysql::munin {
 
     mysql_user{'munin@localhost':
         password_hash => mysql_password("$munin_mysql_password"),
+        require => Package['mysql'],
     }
 
     mysql_grant{'munin@localhost':
