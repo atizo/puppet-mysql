@@ -46,7 +46,7 @@ class mysql::server::base {
             source => [
                 "puppet://$server/files/mysql/${fqdn}/my.cnf",
                 "puppet://$server/files/mysql/my.cnf",
-                "puppet://$server/mysql/config/${operatingsystem}/my.cnf",
+                "puppet://$server/mysql/config/my.cnf.${operatingsystem}",
                 "puppet://$server/mysql/config/my.cnf"
             ],
             ensure => file,
@@ -78,7 +78,7 @@ class mysql::server::base {
     }
 
    file{'/etc/cron.d/mysql_backup.cron':
-        source => [ "puppet://$server/mysql/backup/${operatingsystem}/mysql_backup.cron",
+        source => [ "puppet://$server/mysql/backup/mysql_backup.cron.${operatingsystem}",
                     "puppet://$server/mysql/backup/mysql_backup.cron" ],
         require => [ Exec[set_mysql_rootpw], File['/root/.my.cnf'] ],
         owner => root, group => 0, mode => 0600;
