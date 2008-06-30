@@ -88,7 +88,7 @@ class mysql::server::base {
 		ensure => running,
         enable => true,
 		hasstatus => true,
-		require => [ Package[mysql-server], Exec['set_mysql_rootpw'] ],
+		require => Package[mysql],
 	}
 
 	# Collect all databases and users
