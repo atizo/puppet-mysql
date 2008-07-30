@@ -26,12 +26,8 @@ class mysql::server {
         include mysql::selinux
     }
 
-    case $mysql_exists {
-        "true": {
-            if $use_munin {
-                include mysql::munin
-            }
-        }
+    if $use_munin {
+        include mysql::munin
     }
 }
 
