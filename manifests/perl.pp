@@ -1,7 +1,7 @@
 # manifests/perl.pp
 
 class mysql::perl {
-    package{'perl-DBD-MySQL':
+    package{'perl-DBD-mysql':
         ensure => installed,
     }
 }
