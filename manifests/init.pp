@@ -74,7 +74,12 @@ class mysql::server::base {
                    "puppet://$server/mysql/backup/mysql_backup.cron" ],
        require => [ Exec[set_mysql_rootpw], File['/root/.my.cnf'] ],
        owner => root, group => 0, mode => 0600;
-   } 
+   }
+   file{'/etc/cron.weekly/mysql_optimize_tables.rb':
+       source => "puppet://$server/mysql/optimize/optimize_tables.rb",
+       require => [ Exec[set_mysql_rootpw], File['/root/.my.cnf'] ],
+       owner => root, group => 0, mode => 0700;
+   }
    service {mysql:
        ensure => running,
        enable => true,
