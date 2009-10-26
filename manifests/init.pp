@@ -13,7 +13,7 @@
 # the Free Software Foundation.
 #
 
-class mysql{
+class mysql {
     case $operatingsystem {
         gentoo: { include mysql::server::gentoo }
         centos: { include mysql::server::centos }
