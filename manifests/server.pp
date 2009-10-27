@@ -46,7 +46,7 @@ class mysql::server {
     }
     file {'/root/.my.cnf':
         content => template('mysql/root/my.cnf.erb'),
-        require => [ Package[mysql-server] Package[mysql] ],
+        require => [ Package[mysql-server], Package[mysql] ],
         owner => root, group => 0, mode => 0400;
     }
     file{'/opt/bin/setmysqlpass.sh':
