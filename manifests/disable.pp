@@ -1,10 +1,9 @@
-# class to install mysql-server
-# in a disabled way.
+# install mysql-server in a disabled state
 class mysql::disable {
     package{'mysql-server':
         ensure => installed,
     }
-    service {mysql:
+    service{'mysql':
        ensure => stopped,
        enable => false,
        hasstatus => true,
