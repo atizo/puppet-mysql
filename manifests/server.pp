@@ -13,10 +13,10 @@ class mysql::server {
     }
     file{'/etc/mysql/my.cnf':
         source => [
-            "puppet://$server/site-mysql/${fqdn}/my.cnf",
+            "puppet://$server/site-mysql/$fqdn/my.cnf",
             "puppet://$server/site-mysql/my.cnf",
-            "puppet://$server/mysql/config/my.cnf.${operatingsystem}",
-            "puppet://$server/mysql/config/my.cnf"
+            "puppet://$server/mysql/my.cnf.$operatingsystem",
+            "puppet://$server/mysql/my.cnf"
         ],
         ensure => file,
         require => Package['mysql-server'],
@@ -33,7 +33,7 @@ class mysql::server {
         owner => root, group => 0, mode => 0400;
     }
     file{'/usr/local/bin/set_mysql_rootpw.sh':
-        source => "puppet://$server/mysql/config/${operatingsystem}/set_mysql_rootpw.sh",
+        source => "puppet://$server/mysql/set_mysql_rootpw.sh.$operatingsystem",
         owner => root, group => 0, mode => 0600;
     }        
     exec{'set_mysql_rootpw':
@@ -49,8 +49,8 @@ class mysql::server {
     # daily dump
     file{'/etc/cron.d/mysql_backup.cron':
         source => [
-            "puppet://$server/mysql/backup/mysql_backup.cron.${operatingsystem}",
-            "puppet://$server/mysql/backup/mysql_backup.cron",
+            "puppet://$server/mysql/mysql_backup.cron.$operatingsystem",
+            "puppet://$server/mysql/mysql_backup.cron",
         ],
         require => [
             Exec['set_mysql_rootpw'],
@@ -61,7 +61,7 @@ class mysql::server {
 
     # weekly optimization
     file{'/etc/cron.weekly/mysql_optimize_tables.rb':
-        source => "puppet://$server/mysql/optimize/optimize_tables.rb",
+        source => "puppet://$server/mysql/optimize_tables.rb",
         require => [
             Exec['set_mysql_rootpw'],
             File['/root/.my.cnf']
