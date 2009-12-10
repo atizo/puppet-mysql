@@ -1,8 +1,8 @@
 require 'puppet/provider/package'
 
 Puppet::Type.type(:mysql_user).provide(:mysql,
-		# T'is funny business, this code is quite generic
-		:parent => Puppet::Provider::Package) do
+  # T'is funny business, this code is quite generic
+	:parent => Puppet::Provider::Package) do
 
 	desc "Use mysql as database."
 	commands :mysql => '/usr/bin/mysql'

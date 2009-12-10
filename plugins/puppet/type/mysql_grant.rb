@@ -1,7 +1,9 @@
 # This has to be a separate type to enable collecting
 Puppet::Type.newtype(:mysql_grant) do
 	@doc = "Manage a database user's rights."
+
 	#ensurable
+  autorequire(:service) { 'mysqld' }
 
 	autorequire :mysql_db do
 		# puts "Starting db autoreq for %s" % self[:name]
