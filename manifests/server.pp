@@ -34,7 +34,7 @@ class mysql::server {
     }
     file{'/usr/local/bin/set_mysql_rootpw.sh':
         source => "puppet://$server/mysql/set_mysql_rootpw.sh.$operatingsystem",
-        owner => root, group => 0, mode => 0600;
+        owner => root, group => 0, mode => 0700;
     }        
     exec{'set_mysql_rootpw':
         command => "/usr/local/bin/set_mysql_rootpw.sh $mysql_rootpw",
