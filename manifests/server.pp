@@ -38,7 +38,7 @@ class mysql::server {
     }        
     exec{'set_mysql_rootpw':
         command => "/usr/local/bin/set_mysql_rootpw.sh $mysql_rootpw",
-        unless => "mysqladmin -u root status > /dev/null",
+        unless => "mysqladmin -u root status",
         before => Service['mysqld'],
         require => [
             File['/usr/local/bin/set_mysql_rootpw.sh'],
