@@ -41,7 +41,9 @@ class mysql::server {
         unless => "mysqladmin -u root status > /dev/null",
         before => Service['mysqld'],
         require => [
-            File['/usr/local/bin/set_mysql_rootpw.sh'], 
+            File['/usr/local/bin/set_mysql_rootpw.sh'],
+            File['/etc/mysql/my.cnf'],
+            File['/root/.my.cnf'],
             Package['mysql-server'],
             Package['mysql'],
         ],
