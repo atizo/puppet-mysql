@@ -1,5 +1,5 @@
 class mysql::client {
-    package{'mysql':
-        ensure => present,
-    }
+  package{'mysql':
+    ensure => present,
+  }
 }

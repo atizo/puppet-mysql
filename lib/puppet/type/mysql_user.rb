@@ -1,4 +1,3 @@
-# This has to be a separate type to enable collecting
 Puppet::Type.newtype(:mysql_user) do
   @doc = "Manage a database user."
 
@@ -10,8 +9,7 @@ Puppet::Type.newtype(:mysql_user) do
 
     validate do |value|
       if value.split('@').first.size > 16
-        raise ArgumentError,
-              "MySQL usernames are limited to a maximum of 16 characters"
+        raise ArgumentError, "MySQL usernames are limited to a maximum of 16 characters"
       else
         super
       end
