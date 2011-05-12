@@ -1,1 +1,1 @@
-45 23 * * * root /usr/bin/mysqldump --default-character-set=utf8 --all-databases --all --flush-logs --lock-all-tables | gzip > /var/lib/mysql/mysqldump.sql.gz && chmod 600 /var/lib/mysql/mysqldump.sql.gz
+45 23 * * * root /usr/bin/mysqldump --default-character-set=utf8 --all-databases --create-options --flush-logs --lock-all-tables | gzip > /var/lib/mysql/mysqldump.sql.gz && chmod 600 /var/lib/mysql/mysqldump.sql.gz
